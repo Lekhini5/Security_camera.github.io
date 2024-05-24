@@ -2,6 +2,7 @@
 Open-Source Computer Vision is a machine learning software library which provides a real-time optimized Computer vision library and tools. OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products. Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code. It can be used in python for image processing, motion detection, face recognition, and other function. 
 
 Import OpenCV and Creating VideoCapture object
+
 Ensure that you have installed OpenCV on your PC. After the installation is complete, import the library. 
 
 import cv2
@@ -11,6 +12,7 @@ We then need to create a VideoCapture object to read the frames from the input i
 cap=cv2.VideoCapture(0)
 
 Reading our first frame
+
 The first frame typically means it contains only the background. It the reference frame of our program. If there is any difference in the current frame with respect to the first frame, it means motion is detected. We store our first frame in the frame1 variable. 
 
 So, The first line is to read the frame. We then convert the colored frame to B&W since we do not need colors to detect motion. Then we smooth out the image using GaussianBlur.
@@ -24,6 +26,7 @@ gray1 = cv2.GaussianBlur(gray1, (25, 25), 0)
 cv2.imshow('window',frame1)
 
 Reading Subsequent frames
+
 We then write an infinite while loop to read the next frames. while(True):
 
 ret2,frame2=cap.read()
@@ -47,6 +50,7 @@ threshold = cv2.dilate(threshold,None)
 cv2.imshow('threshold',threshold)
 
 Detecting contours
+
 Using contours, we can find the white images in the black background.
 
 countour,heirarchy = cv2.findContours(threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -66,6 +70,7 @@ cv2.imshow('window',frame2)
 We now loop through the contour numpy array and draw a rectangle around the moving object. We get the rectangle bounds using boundingRect() and draw the rectangle onto frame2 using the rectangle() method.
 
 Alerting with buzzer sound
+
 After detecting the moving person the system alerts the people in the surroundings with abeep sound .It uses winsound module in python to nplay the sound. 
 
 winsound.Beep(500,200)
